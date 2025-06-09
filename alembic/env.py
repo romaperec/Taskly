@@ -21,6 +21,7 @@ if config.config_file_name is not None:
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
 from src.database import Base  # noqa: E402
+from src.auth.models import *  # noqa: E402, F403
 
 target_metadata = Base.metadata
 
@@ -28,9 +29,9 @@ target_metadata = Base.metadata
 # can be acquired:
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
-from src.config import DatabaseConfig  # noqa: E402
+from src.config import db_config  # noqa: E402
 
-config.set_main_option("sqlalchemy.url", DatabaseConfig.DB_URL)
+config.set_main_option("sqlalchemy.url", db_config.DB_URL)
 
 
 def run_migrations_offline() -> None:
