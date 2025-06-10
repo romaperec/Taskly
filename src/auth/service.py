@@ -1,12 +1,29 @@
 from fastapi import HTTPException, status
 from email_validator import validate_email, EmailNotValidError
 
+import os
+from loguru import logger
+
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.auth.models import UserModel
 from src.auth.schemas import UserSchema
 from src.auth.utils import hash_password
+
+
+# Logger config
+os.makedirs("logs", exist_ok=True)
+
+logger.add(
+    "logs/auth_{time:YYYY-MM-DD}.log",
+    rotation="1 day",
+    retention="30 days",
+    compression="zip",
+    format="{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}",
+    level="DEBUG",
+    enqueue=True,
+)
 
 
 async def register_user(user_schema: UserSchema, db: AsyncSession):
@@ -33,4 +50,5 @@ async def register_user(user_schema: UserSchema, db: AsyncSession):
     await db.commit()
     await db.refresh(new_user)
 
+    logger.info(f"New user registered: {new_user.email}. User ID: {new_user.id}")
     return {"status": status.HTTP_200_OK}
