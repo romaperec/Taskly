@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "alembic>=1.16.1",
+    "another-fastapi-jwt-auth>=0.1.6",
     "asyncpg>=0.30.0",
     "email-validator>=2.2.0",
     "fastapi>=0.115.12",
@@ -13,7 +14,6 @@ dependencies = [
     "passlib[bcrypt]>=1.7.4",
     "pydantic-settings>=2.9.1",
     "pydantic[email]>=2.11.5",
-    "pyjwt>=2.10.1",
     "sqlalchemy>=2.0.41",
     "uvicorn>=0.34.3",
 ]

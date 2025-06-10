@@ -26,6 +26,20 @@ wheels = [
 ]
 
 [[package]]
+name = "another-fastapi-jwt-auth"
+version = "0.1.6"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "fastapi" },
+    { name = "pydantic" },
+    { name = "pyjwt" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/9a/53/852089fe51dc398e260fa43d8e5780467419caaf3572d185f6fb55c94787/another_fastapi_jwt_auth-0.1.6.tar.gz", hash = "sha256:41f031c675acec6d6ac1d28f0dc75eefeb878c221494a5ae704c887fa82db17f", size = 11503, upload-time = "2025-06-04T07:57:33.807Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/7b/a7/9c0fb472542045fb765787a3e12520e959fbb2e8a13266103d4822e312dc/another_fastapi_jwt_auth-0.1.6-py3-none-any.whl", hash = "sha256:0b5cc3c6dfabfd40a26875734e9a0d845d03e0e4a2c18405fb83373681355942", size = 12743, upload-time = "2025-06-04T07:57:32.643Z" },
+]
+
+[[package]]
 name = "anyio"
 version = "4.9.0"
 source = { registry = "https://pypi.org/simple" }
@@ -423,6 +437,7 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "alembic" },
+    { name = "another-fastapi-jwt-auth" },
     { name = "asyncpg" },
     { name = "email-validator" },
     { name = "fastapi" },
@@ -430,7 +445,6 @@ dependencies = [
     { name = "passlib", extra = ["bcrypt"] },
     { name = "pydantic", extra = ["email"] },
     { name = "pydantic-settings" },
-    { name = "pyjwt" },
     { name = "sqlalchemy" },
     { name = "uvicorn" },
 ]
@@ -443,6 +457,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "alembic", specifier = ">=1.16.1" },
+    { name = "another-fastapi-jwt-auth", specifier = ">=0.1.6" },
     { name = "asyncpg", specifier = ">=0.30.0" },
     { name = "email-validator", specifier = ">=2.2.0" },
     { name = "fastapi", specifier = ">=0.115.12" },
@@ -450,7 +465,6 @@ requires-dist = [
     { name = "passlib", extras = ["bcrypt"], specifier = ">=1.7.4" },
     { name = "pydantic", extras = ["email"], specifier = ">=2.11.5" },
     { name = "pydantic-settings", specifier = ">=2.9.1" },
-    { name = "pyjwt", specifier = ">=2.10.1" },
     { name = "sqlalchemy", specifier = ">=2.0.41" },
     { name = "uvicorn", specifier = ">=0.34.3" },
 ]

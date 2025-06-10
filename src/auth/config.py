@@ -2,8 +2,5 @@ from pydantic_settings import BaseSettings
 
 
 class JWTConfig(BaseSettings):
-    SECRET_KEY: str = "qwerty12345"
-    ALGORITHM: str = "HS256"
-
-
-jwt_config = JWTConfig()
+    authjwt_secret_key: str = "qwerty123"
+    authjwt_algorithm: str = "HS256"
