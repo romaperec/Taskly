@@ -3,7 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from another_fastapi_jwt_auth import AuthJWT
 
 from src.database import get_session
-from src.auth.service import register_user, login_user
+from src.auth.service import register_user, login_user, get_current_user
 from src.auth.schemas import UserSchema
 
 router = APIRouter(prefix="/auth", tags=["Auth"])
@@ -21,3 +21,10 @@ async def login(
     Authorize: AuthJWT = Depends(),
 ):
     return await login_user(user_schema, db, Authorize)
+
+
+@router.get("/user")
+async def get_info(
+    db: AsyncSession = Depends(get_session), Authorize: AuthJWT = Depends()
+):
+    return await get_current_user(db, Authorize)

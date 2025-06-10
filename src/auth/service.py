@@ -84,3 +84,18 @@ async def login_user(user_schema: UserSchema, db: AsyncSession, Authorize: AuthJ
 
     logger.info(f"User entered in account. User ID: {user.id}")
     return {"access_token": access_token}
+
+
+async def get_current_user(db: AsyncSession, Authorize: AuthJWT):
+    Authorize.jwt_required()
+    user_id = Authorize.get_jwt_subject()
+
+    user_in_db = await db.execute(select(UserModel).where(int(user_id) == UserModel.id))
+    user = user_in_db.scalar_one_or_none()
+
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="User not found"
+        )
+
+    return {"user": {"id": user.id, "email": user.email}}
